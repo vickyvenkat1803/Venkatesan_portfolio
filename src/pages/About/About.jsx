@@ -1,5 +1,5 @@
 import HeroImg from "@/assets/images/vicky.jpg";
-import VectorLogo from "@/assets/images/Vector_logo.png";
+import VectorLogo from "@/assets/images/vector_logo.png";
 
 export default function About() {
   return (
