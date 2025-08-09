@@ -7,6 +7,8 @@ import Header from "./pages/Header/Header";
 import Hero from "./pages/Hero/Hero";
 import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 
 import { Route, Routes } from "react-router-dom";
 
@@ -36,7 +38,9 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
+        
       )}
+      <SpeedInsights />
     </>
   );
 }
