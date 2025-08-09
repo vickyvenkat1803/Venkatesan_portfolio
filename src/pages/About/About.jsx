@@ -1,5 +1,5 @@
 import HeroImg from "@/assets/images/vicky.jpg";
-import OlovaLogo from "@/assets/images/olova.png";
+import VectorLogo from "@/assets/images/Vector_logo.png";
 
 export default function About() {
   return (
@@ -54,12 +54,12 @@ export default function About() {
                     {/* <div className="flex items-center gap-2">
                       <img
                         className="h-5 w-fit"
-                        src={OlovaLogo}
-                        alt="Olova Logo"
+                        src={VectorLogo}
+                        alt="Vector Logo"
                         height="20"
                         width="auto"
                       />
-                      <span className="text-white">OlovaJS</span>
+                      <span className="text-white">VECTOR</span>
                     </div> */}
                   </div>
                 </blockquote>

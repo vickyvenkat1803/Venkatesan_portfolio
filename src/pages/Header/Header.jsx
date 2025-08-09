@@ -20,27 +20,20 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const navLinks = [
     { id: "home", icon: FaHome, text: "Home", path: "/" },
     { id: "skills", icon: FaCode, text: "Skills", path: "/skills" },
-    {
-      id: "experience",
-      icon: FaBriefcase,
-      text: "Experience",
-      path: "/experience",
-    },
-    {
-      id: "education",
-      icon: FaGraduationCap,
-      text: "Education",
-      path: "/education",
-    },
+    { id: "experience", icon: FaBriefcase, text: "Experience", path: "/experience" },
+    { id: "education", icon: FaGraduationCap, text: "Education", path: "/education" },
     { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
     { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
   ];
@@ -52,8 +45,10 @@ export default function Header() {
           <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
             {/* Mobile Menu Button */}
             <div className="flex justify-between items-center md:hidden px-2">
-              <Link to="/" className="text-white font-bold">Portfolio</Link>
-              <button 
+              <Link to="/" className="text-white font-bold">
+                Portfolio
+              </Link>
+              <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white p-2"
               >
@@ -62,9 +57,9 @@ export default function Header() {
             </div>
 
             {/* Navigation Links */}
-            <div className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+            <div className={`${isMenuOpen ? "block" : "hidden"} md:block`}>
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0">
-                {navLinks.map(({ id, icon: Icon, text, path }) => (
+                {navLinks.map(({ id, icon: Icon, text, path }, index) => (
                   <Link
                     key={id}
                     to={path}
@@ -72,9 +67,14 @@ export default function Header() {
                       setActiveLink(id);
                       setIsMenuOpen(false);
                     }}
-                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
-                      transition-all duration-300 flex items-center gap-2
-                      hover:bg-white/10 
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setHoverPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                      setHoveredIndex(index);
+                    }}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    className={`relative px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
+                      transition-all duration-300 flex items-center gap-2 overflow-hidden
                       ${
                         activeLink === id
                           ? "bg-white/15 text-white"
@@ -82,12 +82,18 @@ export default function Header() {
                       }
                     `}
                   >
-                    <Icon
-                      className={`text-base ${
-                        activeLink === id ? "scale-110" : ""
-                      }`}
-                    />
-                    <span className="inline">{text}</span>
+                    {/* Cursor-follow hover glow */}
+                    {hoveredIndex === index && (
+                      <span
+                        className="absolute w-20 h-20 bg-blue-500/100 rounded-full blur-xl pointer-events-none transition-transform duration-150 ease-out"
+                        style={{
+                          top: hoverPos.y - 40,
+                          left: hoverPos.x - 40,
+                        }}
+                      />
+                    )}
+                    <Icon className={`text-base ${activeLink === id ? "scale-110" : ""}`} />
+                    <span>{text}</span>
                   </Link>
                 ))}
               </div>
