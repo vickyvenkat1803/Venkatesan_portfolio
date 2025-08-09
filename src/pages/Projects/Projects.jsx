@@ -11,8 +11,8 @@ const projects = [
     src: "tree.jpg",
     link: "https://i.postimg.cc/xdrmGFP0/Screenshot-2025-08-04-195534.png",
     color: "#8f89ff",
-    githubLink: "https://github.com/seraprogrammer/portfolio",
-    liveLink: "https://vickyvenkat1803.vercel.app/",
+    githubLink: "https://github.com/vickyvenkat1803/Venkatesan_portfolio",
+    liveLink: "https://venkatesan.vercel.app/",
   },
   // {
   //   title: "Olova! A Lightweight JavaScript Library",
