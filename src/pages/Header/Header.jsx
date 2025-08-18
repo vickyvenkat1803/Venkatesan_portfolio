@@ -58,7 +58,7 @@ export default function Header() {
 
             {/* Navigation Links */}
             <div className={`${isMenuOpen ? "block" : "hidden"} md:block`}>
-              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0">
+              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0 ">
                 {navLinks.map(({ id, icon: Icon, text, path }, index) => (
                   <Link
                     key={id}
@@ -74,7 +74,7 @@ export default function Header() {
                     }}
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={`relative px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
-                      transition-all duration-300 flex items-center gap-2 overflow-hidden
+                      transition-all duration-300 flex items-center gap-2 overflow-hidden hover:scale-[1.08]
                       ${
                         activeLink === id
                           ? "bg-white/15 text-white"
