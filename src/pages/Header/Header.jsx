@@ -74,7 +74,7 @@ export default function Header() {
                     }}
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={`relative px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
-                      transition-all duration-300 flex items-center gap-2 overflow-hidden hover:scale-[1.08]
+                      transition-all duration-300 flex items-center gap-2 overflow-hidden hover:scale-[1.08] 
                       ${
                         activeLink === id
                           ? "bg-white/15 text-white"
